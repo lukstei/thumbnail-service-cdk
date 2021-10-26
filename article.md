@@ -2,12 +2,14 @@
 
 In this article, we build a service that automatically creates thumbnails of uploaded pictures, which can be e.g. used for a blog.
 
+![Service diagram](article/service.png)
+
 To create our service, we will use S3, the AWS file storage service, to store the pictures and thumbnails, and AWS Lambda, the AWS serverless computing service, to create the thumbnails.
 When a user uploads a picture to the source S3 bucket, a lambda function will be triggered, which will execute our code to generate the thumbnails and will put it into a target bucket.
 
-![Service diagram](article/service.png)
-
 To define the cloud resources of our service within AWS, we will use AWS CDK (Cloud development kit, https://aws.amazon.com/de/cdk/), a new library to write infrastructure code. In this example we will use Typescript as our programming language of choice.
+
+The final code can be downloaded at https://github.com/lukstei/thumbnail-service-cdk.
 
 ### Getting started with the AWS CDK
 
@@ -123,7 +125,7 @@ When we look at the generated CloudFormation template, we see that our token was
 
 The nice thing about that is, that we don't even have to understand how it works internally, we can just use the value just as if it was actually present. It is even possible to do string concatenation with tokens, e.g. `thumbnailer.func.functionArn + " a string"` which would render correctly.
 
-#### The ThumbnailingBucket constructs
+#### The ThumbnailingBucket construct
 
 Since there is not much more interesting to see in `CdkThumbnailServiceStack`, let's look into the `ThumbnailingBucket` construct, which is located in `lib/ThumbnailingBucket.ts`:
 
@@ -185,7 +187,7 @@ As we see it is possible to loop over an array and execute some CDK logic on it,
 
 For all resource references we can just use normal variables, e.g. for the `LambdaDestination` we can pass the Lambda construct we created above. It would also be possible to reference already existing resources, e.g. for Lambdas with `const myExistingLambda = lambda.Function.fromFunctionArn("arn:aws:lambda:region:account-id:function:function-name")`
 
-```
+```typescript
         this.sourceBucket.grantRead(this.func);
         this.destBucket.grantWrite(this.func);
 ```
@@ -210,7 +212,8 @@ The generated service role policy statement for the source bucket looks as expec
 
 We can run the synthetization with `cdk synth` to see the generated CloudFormation template.
 To deploy our stack we can run `cdk deploy`.
-After it's deployed we can put a test image into the source bucket and see the generated thumbnails in the destination bucket.
+
+After it's deployed we can put a test image into the source bucket and see the generated thumbnails in the destination bucket. Seems to work just fine :-)
 
 ![generated-pictures](article/generated-pictures.jpg)
 
@@ -234,9 +237,6 @@ describe('ThumbnailingBucket', () => {
     it("defines exactly two buckets", () => {
         expect(stack).toCountResources('AWS::S3::Bucket', 2);
     });
-    it("defines exactly two buckets", () => {
-        expect(stack).toCountResources('AWS::Lambda::Function', 1+1); // 1 is implicitly created by the notification handler
-    });
     it("sets the correct policies", () => {
         expect(SynthUtils.subset(stack, {resourceTypes: ["AWS::IAM::Policy"]})).toMatchSnapshot();
     });
@@ -253,3 +253,5 @@ One shortcoming of the snapshots is, that the generated template contains synthe
 
 // todo
 In this article we created a serverless thumbnail service using the AWS CDK. We were able to leverage our 
+
+What I specifically like about this example is that it contains just the minimal amount of code to express how my service should look like, pretty elegant and without any unecessary indirections or overhead. I would also argue, that a normal developer can understand what the service is doing just by reading the code, without having deep knowledge understanding of AWS or CloudFormation. 

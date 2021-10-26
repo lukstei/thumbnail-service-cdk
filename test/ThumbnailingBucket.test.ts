@@ -11,7 +11,7 @@ describe('ThumbnailingBucket', () => {
     it("defines exactly two buckets", () => {
         expect(stack).toCountResources('AWS::S3::Bucket', 2);
     });
-    it("defines exactly two buckets", () => {
+    it("defines exactly two lambdas", () => {
         expect(stack).toCountResources('AWS::Lambda::Function', 1+1); // 1 is implicitly created by the notification handler
     });
     it("sets the correct policies", () => {
