@@ -7,7 +7,7 @@ export class CdkThumbnailServiceStack extends cdk.Stack {
         super(scope, id, props);
 
         const thumbnailer = new ThumbnailingBucket(this, "Thumbnailer", {
-            name: "lukstei-pictures2"
+            name: "my-globally-unique-bucket-id" // todo: change the bucket name
         });
 
         new CfnOutput(this, "SourceBucketUrl", {
