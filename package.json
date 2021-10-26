@@ -1,0 +1,37 @@
+{
+  "name": "cdk-thumbnail-service",
+  "version": "0.1.0",
+  "bin": {
+    "cdk-lambda": "bin/cdk-thumbnail-service.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk"
+  },
+  "devDependencies": {
+    "@aws-cdk/aws-lambda": "^1.129.0",
+    "@aws-cdk/aws-lambda-nodejs": "^1.129.0",
+    "@aws-cdk/aws-s3-notifications": "^1.129.0",
+    "@aws-cdk/aws-secretsmanager": "^1.129.0",
+    "@aws-cdk/core": "^1.129.0",
+    "@aws-cdk/assert": "^1.129.0",
+    "@types/jest": "^26.0.24",
+    "@types/node": "10.17.27",
+    "@types/sharp": "^0.29.2",
+    "aws-cdk": "1.129.0",
+    "aws-lambda": "^1.0.6",
+    "esbuild": "^0.13.8",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.2.0",
+    "ts-node": "^9.0.0",
+    "typescript": "~3.9.7"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1013.0",
+    "node-fetch": "^3.0.0",
+    "sharp": "^0.29.2",
+    "source-map-support": "^0.5.16"
+  }
+}

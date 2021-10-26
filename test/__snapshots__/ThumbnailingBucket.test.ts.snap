@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ThumbnailingBucket sets the correct policies 1`] = `
+Object {
+  "Parameters": Object {
+    "AssetParametersa2f31fca9c5c89d231767354edd7a1cdf59f6ac115097449d573480adcd87893ArtifactHashD5EA1BD9": Object {
+      "Description": "Artifact hash for asset \\"a2f31fca9c5c89d231767354edd7a1cdf59f6ac115097449d573480adcd87893\\"",
+      "Type": "String",
+    },
+    "AssetParametersa2f31fca9c5c89d231767354edd7a1cdf59f6ac115097449d573480adcd87893S3Bucket58130362": Object {
+      "Description": "S3 bucket for asset \\"a2f31fca9c5c89d231767354edd7a1cdf59f6ac115097449d573480adcd87893\\"",
+      "Type": "String",
+    },
+    "AssetParametersa2f31fca9c5c89d231767354edd7a1cdf59f6ac115097449d573480adcd87893S3VersionKey427CAB8F": Object {
+      "Description": "S3 key for asset version \\"a2f31fca9c5c89d231767354edd7a1cdf59f6ac115097449d573480adcd87893\\"",
+      "Type": "String",
+    },
+  },
+  "Resources": Object {
+    "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleDefaultPolicy2CF63D36": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "s3:PutBucketNotification",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleDefaultPolicy2CF63D36",
+        "Roles": Array [
+          Object {
+            "Ref": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleB6FB88EC",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "SubjectresizerServiceRoleDefaultPolicy12948A57": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "SubjectsourceBucketDE59AEC9",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "SubjectsourceBucketDE59AEC9",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "s3:DeleteObject*",
+                "s3:PutObject*",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "SubjectdestBucketF0E8C51E",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "SubjectdestBucketF0E8C51E",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "SubjectresizerServiceRoleDefaultPolicy12948A57",
+        "Roles": Array [
+          Object {
+            "Ref": "SubjectresizerServiceRole37921AD8",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+  },
+}
+`;
