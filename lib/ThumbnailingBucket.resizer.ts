@@ -16,7 +16,7 @@ function pathParts(name: string) {
 
 export const handler = async (
     event: S3Event
-): Promise<any> => {
+): Promise<void> => {
     AWS.config.logger = console;
 
     const destBucket = process.env.DEST_BUCKET!;

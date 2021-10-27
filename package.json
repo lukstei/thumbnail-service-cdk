@@ -11,12 +11,13 @@
     "cdk": "cdk"
   },
   "devDependencies": {
+    "@aws-cdk/assert": "^1.129.0",
     "@aws-cdk/aws-lambda": "^1.129.0",
     "@aws-cdk/aws-lambda-nodejs": "^1.129.0",
     "@aws-cdk/aws-s3-notifications": "^1.129.0",
     "@aws-cdk/aws-secretsmanager": "^1.129.0",
     "@aws-cdk/core": "^1.129.0",
-    "@aws-cdk/assert": "^1.129.0",
+    "@types/aws-lambda": "^8.10.84",
     "@types/jest": "^26.0.24",
     "@types/node": "10.17.27",
     "@types/sharp": "^0.29.2",

@@ -14,10 +14,10 @@ The final code can be downloaded at https://github.com/lukstei/thumbnail-service
 ### Getting started with the AWS CDK
 
 So what it is AWS CDK?
-In a nutshell, it is a library for generating CloudFormation templates (i.e. a JSON file, which describes your infrastructure) in different languages like Typescript, Python and Java.
+In a nutshell, it is a library for generating a CloudFormation template (which is a JSON file defining our AWS infrastructure) in different languages like Typescript, Python and Java.
 Important to understand is, when using CDK, the CloudFormation template is generated on our computer, so there is no AWS Service which is called "CDK".
 
-After it has been created, the CloudFormation template is uploaded to the AWS CloudFormation service, which creates the described infrastructure in AWS (this works both for the initial creation, and also when you change a template and the resources are already in place and need to be changed, see https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html).
+After the CloudFormation template has been created, it is uploaded to the AWS CloudFormation service, which creates the described infrastructure in AWS (this works both for the initial creation, and also when you change a template and the resources are already in place and need to be changed, see https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html).
 
 To get started, we need to learn about a few concepts, which are specific to CDK:
 
@@ -31,11 +31,11 @@ To get started, we need to learn about a few concepts, which are specific to CDK
 One could ask why even bother learning new concepts when we have our good old CloudFormation templates?
 In my opinion there are few advantages when using CDK compared to writing CloudFormation templates by hand:
 
-- **Familiar tooling and programming language concepts:** I can use my well known tools like the IDE and the tooling it provides (including code auto-completion and refactoring). I can use a programming language I am already familiar with and the CDK integrates into the provided programming languages constructs like using variables for references. I can use the package manager to use and create dependencies and the known the file structure for my code.
+- **Familiar tooling and programming language concepts:** I can use my well known tools like the IDE and the tooling it provides (including code auto-completion and refactoring). I can use a programming language I am already familiar with and the CDK integrates into the provided programming languages constructs, like using variables for references. I can use the package manager to use and create dependencies and use the known the file structure for my code.
 - **No need to learn a new schema:** I do not have to learn the nitty-gritty details of a schema like CloudFormation templates to define my infrastructure, so I can focus on the "business logic", i.e. how I want to stick together my resources (of course I still need to get familiar with the resource/API constructs provided by the AWS platform)
 - **Testing:** I can unit test the code I write as I usually do, e.g. with Jest
 - **Compactness and maintainability:** In my example I could define the service infrastructure in about 30 lines - it will generate a 300 line cloudformation template. I can leverage the abstraction constructs my programming language provides me, and this helps me to define everything with more compact code, and also makes things more maintainable.
-- **Fun and fast:** Last but not least, It's just more fun playing and sticking together the different services and getting instant feedback via the type system and the IDE, than to mess around with a 300 line YAML file. Also, I'm faster navigating and reading the API definitions in the code (which in our case are Typescript files/types), than browsing a website to read the documentation
+- **Fun and fast:** Last but not least, It's just more fun playing and sticking together the different services and getting instant feedback via the type system and the IDE, than to mess around with a 300 lines YAML file. Also, I'm faster navigating and reading the API definitions in the code (which in our case are Typescript files/types), than browsing a website to read the documentation.
 
 ## Let's get started
 
@@ -251,7 +251,6 @@ One shortcoming of the snapshots is, that the generated template contains synthe
 
 ## Conclusion
 
-// todo
-In this article we created a serverless thumbnail service using the AWS CDK. We were able to leverage our 
+In this article we created a serverless thumbnail service using the AWS CDK. 
 
-What I specifically like about this example is that it contains just the minimal amount of code to express how my service should look like, pretty elegant and without any unecessary indirections or overhead. I would also argue, that a normal developer can understand what the service is doing just by reading the code, without having deep knowledge understanding of AWS or CloudFormation. 
+What I specifically like about this example, is that it contains just the minimal amount of code nedded to express how my service should look like and behave - elegant and without any unnecessary indirections or overhead. I would also argue, that a normal developer can understand, what the service is doing just by reading the code, and without having deep knowledge understanding of AWS or CloudFormation. 
