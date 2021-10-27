@@ -190,6 +190,8 @@ For all resource references we can just use normal variables, e.g. for the `Lamb
 ```typescript
         this.sourceBucket.grantRead(this.func);
         this.destBucket.grantWrite(this.func);
+    }
+}
 ```
 
 The last thing we do is to grant the lambda function permissions to read from the source bucket and to grant write permissions to the destination bucket.
