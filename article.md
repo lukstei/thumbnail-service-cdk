@@ -22,7 +22,7 @@ After the CloudFormation template has been created, it can then be uploaded to t
 To get started, we need to learn about a few concepts, that are specific to CDK:
 
 - **App:** The root construct, which is a container for one or more stacks.
-- **Stack:** A stack is a unit of deployment, all resources within a stack are provisioned <abhängig von Bedeutung ggfs. nicht das Richtige Wort - sind alle Ressourcen in einem Stack als einzelne Unit vorgesehen (privisioned), oder ist gemeint alle Ressourcen in einem Stack sind zusammen eine Unit (eher grouped oder packed)> as a single unit. You can deploy stacks individually or as a group.
+- **Stack:** A stack is a unit of deployment, all resources within a stack are provisioned as a single unit. You can deploy stacks individually or as a group.
 - **Construct:** The main abstraction unit/building block of a stack. A construct contains one or more logically related resources. There are L1 Constructs, which directly correspond to the resources defined by CloudFormation, and higher order Constructs, which represent one or more resources and may already contain some logic.
 - **Resource:** Represents an actual entity within AWS, e.g. an EC2 instance or a S3 bucket. Each resource is identified by a unique ARN (Amazon Resource Name).
 - **Token:** Represents a value that is not known yet. When we, for example, want to pass the ARN of an S3 bucket to a Lambda function, the ARN is only known after the ressource ist created. A token is therefore used as a placeholder (the system uses CloudFormation references) that is resolved in the background automatically upon creation.
